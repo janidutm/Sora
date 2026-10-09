@@ -1,0 +1,100 @@
+{
+  "version": "1.0.0",
+  "checkedAt": "2026-10-09T22:44:07.744060+05:30",
+  "unitTests": {
+    "passed": 22,
+    "failed": 0
+  },
+  "checks": {
+    "layout": {
+      "sizes": [
+        {
+          "width": 1000,
+          "height": 700,
+          "allSpotlightActionsVisible": true
+        },
+        {
+          "width": 1420,
+          "height": 930,
+          "allSpotlightActionsVisible": true
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "allSpotlightActionsVisible": true
+        }
+      ],
+      "ok": true
+    },
+    "posterPreviews": {
+      "largeCarouselDoesNotExpand": "passed",
+      "posterExpandedDetailsAndBounds": "passed",
+      "escapeDismisses": "passed",
+      "rightEdgeBounds": "passed",
+      "previewClickOpensDetailsOnly": "passed",
+      "ok": true
+    },
+    "discovery": {
+      "dailyFeed": {
+        "day": "2026-10-09",
+        "trending": 18,
+        "popular": 12,
+        "upcoming": 12
+      },
+      "fiveSecondCarousel": "passed",
+      "pause": "passed",
+      "posterOpensDetailsOnly": "passed",
+      "historyPosterDoesNotPlay": "passed",
+      "offlineCollectionThumbAndTitle": "passed",
+      "ok": true
+    },
+    "libraryAndSchedule": {
+      "nativeFullscreen": "passed: Electron window entered fullscreen",
+      "fullscreenExit": "passed",
+      "backForward": "passed",
+      "backupExportImport": "passed",
+      "restoreWithSafetyCopy": "passed",
+      "homeFeatures": "passed",
+      "airingSchedule": "passed: 50 upcoming episodes",
+      "ok": true
+    },
+    "quality": {
+      "seasonBanners": "passed",
+      "largeCarouselStaysCompact": "passed",
+      "bestDefault": {
+        "height": 1080,
+        "highest": 1080
+      },
+      "manualSwitch": "passed: 1080p without restarting",
+      "adaptiveAuto": "passed",
+      "returnToBest": "passed",
+      "qualityPreference": "passed",
+      "multiResolutionFixture": "passed: 360p \u2192 180p with position retained",
+      "fixtureReturnToBest": "passed",
+      "ok": true
+    },
+    "livePlaybackAndDownloads": {
+      "artworkSearch": "passed",
+      "sourceSearch": "passed",
+      "episodeListing": "passed",
+      "metadataMapping": "passed",
+      "watchlist": "passed",
+      "relations": "passed",
+      "individualEpisodeButtons": "passed",
+      "cachedEpisodeLookupMs": 1,
+      "automaticEdition": "passed",
+      "episodeClickAutoplay": "passed",
+      "embeddedPlayback": "passed: media time advanced beyond 2 seconds",
+      "qualityMenu": "passed",
+      "speedControl": "passed",
+      "subtitleCues": "passed",
+      "playingFullscreen": "passed",
+      "escapeKeepsPlayer": "passed",
+      "downloadTransfer": "passed: yt-dlp reported 0.7%",
+      "downloadCancel": "passed",
+      "ok": true
+    }
+  },
+  "uninstallDryRun": "passed; no files removed",
+  "limits": "Download transfer and cancellation verified with a partial download; full episodes and every external source were not exhaustively tested."
+}

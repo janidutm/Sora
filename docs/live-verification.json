@@ -6,7 +6,7 @@
   "watchlist": "passed",
   "relations": "passed",
   "individualEpisodeButtons": "passed",
-  "cachedEpisodeLookupMs": 2,
+  "cachedEpisodeLookupMs": 1,
   "automaticEdition": "passed",
   "episodeClickAutoplay": "passed",
   "embeddedPlayback": "passed: media time advanced beyond 2 seconds",

@@ -1,6 +1,6 @@
 {
   "seasonBanners": "passed",
-  "expandedPreview": "passed",
+  "largeCarouselStaysCompact": "passed",
   "bestDefault": {
     "height": 1080,
     "highest": 1080

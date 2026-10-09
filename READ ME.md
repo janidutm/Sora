@@ -1,6 +1,6 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 0.5.0, local development preview. Developed by **Belu**.
+Version 1.0.0, local desktop release. Developed by **Belu**.
 
 ## Open
 
@@ -101,6 +101,8 @@ Back/forward arrows and Alt+Left/Right restore page state and scroll position. W
 
 ## Verification
 
-Sixteen unit tests passed, including backup round-trip, latest-progress merging, replacement, validation, and automatic season matching. Live Electron checks passed for episode-click autoplay, playing fullscreen, Escape keeping the player open, subtitle cues, speed controls, downloads/cancellation, navigation back/forward, backup export/import, restore safety snapshots, and the airing schedule. These checks used isolated data and small partial downloads. Full episode downloads and every streaming source are not exhaustively tested. Manual visual review was blocked by the Windows helper error “foreground window did not report a process id.”
+Twenty-two unit tests and six Electron integration suites passed for this release. Every spotlight action was visible and clickable at 1000×700, 1420×930, and 1920×1080, including long JoJo titles. Checks covered poster hover previews, daily discovery, offline title links, backups and safety snapshots, navigation, airing schedule, episode-click autoplay, fullscreen, subtitles, speed, Best/Auto/manual quality, and download transfer/cancellation. A controlled two-resolution video verified switching without losing playback position. Application screenshots were reviewed. The uninstall script was checked in WhatIf mode without removing files.
+
+These checks used isolated test data. Download transfer and cancellation were checked with a small partial download; full episodes and every external streaming source were not exhaustively tested. Details are in docs/final-verification.json.
 
 The loading constellation is original CSS animation, with reduced-motion support. Artwork remains credited to AniList and its respective rights holders. Sora's developer credit is Belu. Feature references include [Re:ANIME's schedule](https://reanime.to/schedule) and [watchlist export/import](https://reanime.to/profile). Fullscreen and autoplay follow [Electron's BrowserWindow API](https://www.electronjs.org/docs/latest/api/browser-window).

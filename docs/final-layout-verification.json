@@ -1,0 +1,20 @@
+{
+  "sizes": [
+    {
+      "width": 1000,
+      "height": 700,
+      "allSpotlightActionsVisible": true
+    },
+    {
+      "width": 1420,
+      "height": 930,
+      "allSpotlightActionsVisible": true
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "allSpotlightActionsVisible": true
+    }
+  ],
+  "ok": true
+}
