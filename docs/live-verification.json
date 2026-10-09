@@ -1,0 +1,11 @@
+{
+  "artworkSearch": "passed",
+  "sourceSearch": "passed",
+  "episodeListing": "passed",
+  "metadataMapping": "passed",
+  "watchlist": "passed",
+  "embeddedPlayback": "passed: media time advanced beyond 2 seconds",
+  "downloadTransfer": "passed: yt-dlp reported 0.1%",
+  "downloadCancel": "passed",
+  "ok": true
+}

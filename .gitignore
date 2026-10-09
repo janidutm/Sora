@@ -1,0 +1,8 @@
+node_modules/
+data/
+downloads/
+tools/
+vendor/
+work/
+docs/*.log
+docs/resolve-test.txt

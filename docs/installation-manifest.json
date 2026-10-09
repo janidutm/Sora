@@ -1,0 +1,24 @@
+{
+  "name": "Sora",
+  "version": "0.1.0",
+  "root": "C:\\Users\\JaniduTM\\Documents\\MADEWITHGPT\\Sora",
+  "upstream": "https://github.com/pystardust/ani-cli",
+  "upstreamCommit": "21ed4a0a6354688622b5a967d93ba96d851d0ef2",
+  "upstreamVersion": "5.1.5",
+  "dependencies": {
+    "ytdlp": "2026.08.19",
+    "hls": "1.7.3",
+    "electron": "44.7.0",
+    "mpv": "20261009"
+  },
+  "reused": [
+    "C:\\Program Files\\Git\\bin\\bash.exe",
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\Users\\JaniduTM\\ffmpeg\\bin\\ffmpeg.exe"
+  ],
+  "oldInstallationsRemoved": [
+    "ani-cli",
+    "ani-gui"
+  ],
+  "systemPathChanged": false
+}
