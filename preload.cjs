@@ -1,5 +1,9 @@
 const {contextBridge,ipcRenderer}=require('electron');
 contextBridge.exposeInMainWorld('sora',{
+  discovery: force=>ipcRenderer.invoke('discovery',force),
+  connectivity: ()=>ipcRenderer.invoke('connectivity'),
+  downloadMedia: key=>ipcRenderer.invoke('downloadMedia',key),
+  onDiscovery: fn=>ipcRenderer.on('discovery-update',(_event,value)=>fn(value)),
   fullscreen: value=>ipcRenderer.invoke('fullscreen',value),
   exportBackup: value=>ipcRenderer.invoke('exportBackup',value),
   importBackup: ()=>ipcRenderer.invoke('importBackup'),

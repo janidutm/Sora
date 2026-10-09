@@ -1,0 +1,14 @@
+{
+  "dailyFeed": {
+    "day": "2026-10-09",
+    "trending": 18,
+    "popular": 12,
+    "upcoming": 12
+  },
+  "fiveSecondCarousel": "passed",
+  "pause": "passed",
+  "posterOpensDetailsOnly": "passed",
+  "historyPosterDoesNotPlay": "passed",
+  "offlineCollectionThumbAndTitle": "passed",
+  "ok": true
+}

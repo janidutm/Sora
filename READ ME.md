@@ -1,17 +1,18 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 0.3.0, local development preview. Developed by **Belu**.
+Version 0.4.0, local development preview. Developed by **Belu**.
 
 ## Open
 
 Double-click **Start Sora.cmd**. The desktop app opens with trending anime artwork from AniList.
 
-- Discover: browse trending titles or filter the displayed selection by genre.
+- Discover: spotlight recommendations slide every five seconds. Use arrows, dots, or Pause; hovering or focusing pauses the carousel. Trending, recent popular, and upcoming sections refresh daily, with cached results available while a refresh runs.
 - Search: type a title in the top search bar and press Enter.
-- Open a title: Sora automatically matches the streaming edition using English/Japanese titles and aliases. Use Connection details → Reconnect if the source is unavailable.
+- Open a title: posters open details without playing, including posters in viewing history. Sora automatically matches the streaming edition using English/Japanese titles and aliases. Use Connection details → Reconnect if the source is unavailable.
 - Episodes: click an episode to autoplay immediately. Filter episode numbers, use Start watching/Continue watching, or jump to another episode inside the player.
 - Sora Cinema: adaptive quality plus available source resolutions, playback speed, volume/mute, seeking, fullscreen, picture in picture, previous/next, and optional auto-next. Expand Playback & subtitle settings to choose a track, size, colour, background, position, timing offset, or a local SRT/VTT file. Space pauses, arrows seek 10 seconds, F toggles fullscreen, M mutes. Retry and mpv fallback remain available.
-- Downloads: use the download button beneath any episode, or click Download episodes, pick a range of up to 50 episodes, and Add to queue. Each episode downloads sequentially. Downloads shows progress, cancellation and retry.
+- Downloads: use the download button beneath any episode, or click Download episodes, pick a range of up to 50 episodes, and Add to queue. Each episode downloads sequentially. Collection cards show cached artwork, clickable anime titles, progress, cancellation and retry. Saved offline means the completed video still exists in the downloads folder. Open folder accesses your saved videos.
+- Connection: the top bar shows online/offline status, checked periodically. Click it to recheck. Saved title details remain accessible offline; new searches and streams require a connection.
 - My watchlist: save titles and track Planned, Watching, Completed, On-hold, and Dropped. Filter your library by status.
 - Navigation: use the top-left arrows or Alt+Left/Right to return to a previous page with its search, episode page, and scroll position.
 - Airing schedule: preview the next 50 broadcasts within the coming seven days, grouped in your local timezone. Broadcast times are separate from streaming availability.
