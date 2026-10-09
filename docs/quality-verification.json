@@ -1,0 +1,15 @@
+{
+  "seasonBanners": "passed",
+  "expandedPreview": "passed",
+  "bestDefault": {
+    "height": 1080,
+    "highest": 1080
+  },
+  "manualSwitch": "passed: 1080p without restarting",
+  "adaptiveAuto": "passed",
+  "returnToBest": "passed",
+  "qualityPreference": "passed",
+  "multiResolutionFixture": "passed: 360p → 180p with position retained",
+  "fixtureReturnToBest": "passed",
+  "ok": true
+}

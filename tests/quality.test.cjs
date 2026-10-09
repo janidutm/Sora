@@ -1,0 +1,3 @@
+const test=require('node:test'),assert=require('node:assert/strict');const {qualityIndex}=require('../quality.js');
+test('Best pins the highest resolution then bitrate, regardless of manifest order',()=>{assert.equal(qualityIndex([{height:720,bitrate:2e6},{height:1080,bitrate:4e6},{height:480,bitrate:1e6},{height:1080,bitrate:6e6}],'best'),3);});
+test('Auto remains adaptive, manual choices select available heights, and absent heights fall back to best',()=>{const levels=[{height:480},{height:1080},{height:720}];assert.equal(qualityIndex(levels,'auto'),-1);assert.equal(qualityIndex(levels,'720'),2);assert.equal(qualityIndex(levels,'2160'),1);assert.equal(qualityIndex(levels,'worst'),0);assert.equal(qualityIndex([],'best'),-1);});
