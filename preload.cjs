@@ -1,5 +1,11 @@
 const {contextBridge,ipcRenderer}=require('electron');
 contextBridge.exposeInMainWorld('sora',{
+  fullscreen: value=>ipcRenderer.invoke('fullscreen',value),
+  exportBackup: value=>ipcRenderer.invoke('exportBackup',value),
+  importBackup: ()=>ipcRenderer.invoke('importBackup'),
+  restoreBackup: value=>ipcRenderer.invoke('restoreBackup',value),
+  schedule: ()=>ipcRenderer.invoke('schedule'),
+  onFullscreen: fn=>ipcRenderer.on('fullscreen-state',(_event,value)=>fn(value)),
   detail: id=>ipcRenderer.invoke('detail',id),
   catalogue: q=>ipcRenderer.invoke('catalogue',q),
   sources: q=>ipcRenderer.invoke('sources',q),

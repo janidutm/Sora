@@ -1,0 +1,10 @@
+{
+  "nativeFullscreen": "passed: Electron window entered fullscreen",
+  "fullscreenExit": "passed",
+  "backForward": "passed",
+  "backupExportImport": "passed",
+  "restoreWithSafetyCopy": "passed",
+  "homeFeatures": "passed",
+  "airingSchedule": "passed: 50 upcoming episodes",
+  "ok": true
+}

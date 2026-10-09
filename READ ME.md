@@ -1,6 +1,6 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 0.2.0, local development preview.
+Version 0.3.0, local development preview. Developed by **Belu**.
 
 ## Open
 
@@ -8,11 +8,14 @@ Double-click **Start Sora.cmd**. The desktop app opens with trending anime artwo
 
 - Discover: browse trending titles or filter the displayed selection by genre.
 - Search: type a title in the top search bar and press Enter.
-- Open a title: choose the matching streaming edition if no exact title match is found. Exact English/Japanese title matches are selected automatically.
-- Episodes: choose Subtitled/Dubbed and quality, then click an episode number.
+- Open a title: Sora automatically matches the streaming edition using English/Japanese titles and aliases. Use Connection details → Reconnect if the source is unavailable.
+- Episodes: click an episode to autoplay immediately. Filter episode numbers, use Start watching/Continue watching, or jump to another episode inside the player.
 - Sora Cinema: adaptive quality plus available source resolutions, playback speed, volume/mute, seeking, fullscreen, picture in picture, previous/next, and optional auto-next. Expand Playback & subtitle settings to choose a track, size, colour, background, position, timing offset, or a local SRT/VTT file. Space pauses, arrows seek 10 seconds, F toggles fullscreen, M mutes. Retry and mpv fallback remain available.
 - Downloads: use the download button beneath any episode, or click Download episodes, pick a range of up to 50 episodes, and Add to queue. Each episode downloads sequentially. Downloads shows progress, cancellation and retry.
-- My watchlist: save titles for later without an account.
+- My watchlist: save titles and track Planned, Watching, Completed, On-hold, and Dropped. Filter your library by status.
+- Navigation: use the top-left arrows or Alt+Left/Right to return to a previous page with its search, episode page, and scroll position.
+- Airing schedule: preview the next 50 broadcasts within the coming seven days, grouped in your local timezone. Broadcast times are separate from streaming availability.
+- Surprise me: open a random released title from Discover.
 - Continue watching: saves episode and embedded-player position locally. External mpv playback positions are not tracked.
 
 Downloads are stored in Sora/downloads. Video files and English VTT subtitles share the same filename when available. If the requested quality is unavailable, ani-cli may choose the best available variant; the player offers Auto plus the resolutions actually advertised by the stream.
@@ -24,7 +27,7 @@ Closing the app stops active work. Interrupted downloads are marked for retry on
 - Electron desktop shell; local HTML, CSS and JavaScript with context isolation and sandboxing.
 - AniList GraphQL for artwork/metadata; catalogue cached locally for one hour, with stale results shown immediately while refreshing. Related anime appear below the episode panel.
 - Source and episode lookups are cached and deduplicated for ten minutes in each session. Resolved streams are reused for 90 seconds. Playback reuses the existing episode map.
-- Title matching ignores punctuation and source labels while refusing ambiguous editions. Search sources accepts alternate or shortened titles. Unreleased entries explain their status.
+- Automatic title matching handles punctuation, source labels, aliases, and known split-season entries. Numeric season mismatches are excluded. Unreleased entries explain their status.
 - An unmodified, pinned checkout of pystardust/ani-cli for source search, episode listing and stream extraction. bridge.sh loads upstream functions without running its terminal UI.
 - HLS.js and a token-based localhost stream proxy for embedded playback and English subtitle tracks.
 - yt-dlp for downloads, mpv for optional external playback.
@@ -70,3 +73,31 @@ Eleven unit tests pass. Live Electron checks passed for playback, loaded subtitl
 Player quality switching follows the HLS API: https://hlsjs.video-dev.org/api-docs/hls.js.hls.currentlevel
 
 The combined AniList entry “2nd–3rd Stage” (210482) maps to the verified provider edition named “2nd Stage.” A separate live test passed this mapping and the three-episode listing.
+# Sora 0.3 — Developed by Belu
+
+## Portable library backups
+
+Open **Library & backups** in the sidebar.
+
+1. **Export library backup** opens a Save dialog. The suggested destination is Documents, outside the application folder. Choose any location, including a USB drive or a synced folder you manage yourself.
+2. **Import a backup** reads and validates a Sora version 1 JSON backup, then previews its title/history/status counts.
+3. **Merge library** deduplicates titles and keeps the newest playback record per anime. Imported statuses and player options take precedence. **Replace library** uses only the imported backup.
+4. Before applying either restore, Sora writes a safety copy to `data/restore-snapshots`. Those files can be imported using the same dialog. A pre-upgrade library copy is in `data/upgrade-snapshots`.
+
+Backups include saved titles, watch statuses, watch history with episode/position, audio/quality preferences, and subtitle/playback settings. They exclude videos, browser caches, and signed streaming URLs. JSON files remain local until you copy them elsewhere. Limits: 300 saved titles, 100 recent history records, and 5 MB per backup. A merge exceeding the title limit is rejected without changing the library. Downloaded videos must be copied separately. Account syncing is not included.
+
+## Sora Cinema
+
+Fullscreen uses the Electron desktop window API. F, F11, double-click, or the fullscreen button toggles it. Escape leaves fullscreen while keeping the player open; Escape again closes the player. Fullscreen stays active between episodes. Controls fade away after mouse inactivity during fullscreen playback; move the mouse to reveal them. Settings remain accessible in fullscreen.
+
+The player remembers speed, volume, caption size/colour/background/position/offset, auto-next, and the configurable skip-button duration. The skip button jumps the configured number of seconds; it does not detect actual opening timestamps. Original/dubbed editions can be changed in player settings. Clicking an episode starts playback without a second Play click.
+
+## Navigation and discovery
+
+Back/forward arrows and Alt+Left/Right restore page state and scroll position. Watchlist statuses help separate watching, planned, completed, on-hold, and dropped titles. Episode search works across all episodes, rather than only the visible page. The airing schedule previews the next 50 broadcasts within seven days, using your local timezone. Surprise me opens a released title from Discover. Titles are matched automatically; the manual title chooser has been removed.
+
+## Verification
+
+Sixteen unit tests passed, including backup round-trip, latest-progress merging, replacement, validation, and automatic season matching. Live Electron checks passed for episode-click autoplay, playing fullscreen, Escape keeping the player open, subtitle cues, speed controls, downloads/cancellation, navigation back/forward, backup export/import, restore safety snapshots, and the airing schedule. These checks used isolated data and small partial downloads. Full episode downloads and every streaming source are not exhaustively tested. Manual visual review was blocked by the Windows helper error “foreground window did not report a process id.”
+
+The loading constellation is original CSS animation, with reduced-motion support. Artwork remains credited to AniList and its respective rights holders. Sora's developer credit is Belu. Feature references include [Re:ANIME's schedule](https://reanime.to/schedule) and [watchlist export/import](https://reanime.to/profile). Fullscreen and autoplay follow [Electron's BrowserWindow API](https://www.electronjs.org/docs/latest/api/browser-window).

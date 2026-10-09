@@ -6,3 +6,5 @@ vendor/
 work/
 docs/*.log
 docs/resolve-test.txt
+
+backups/
