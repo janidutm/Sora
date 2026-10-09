@@ -7,7 +7,7 @@ Version 0.5.0, local development preview. Developed by **Belu**.
 Double-click **Start Sora.cmd**. The desktop app opens with trending anime artwork from AniList.
 
 - Discover: spotlight recommendations slide every five seconds. Use arrows, dots, or Pause; hovering or focusing pauses the carousel. Trending, recent popular, and upcoming sections refresh daily, with cached results available while a refresh runs.
-- Spotlight artwork uses AniList banners for the exact season entry, prioritizing titles with landscape banners. A poster is contained rather than stretched when no banner is available. Hover or keyboard-focus a banner to expand it inside Sora, with synopsis, genres, status, episode count, and alternate title.
+- Spotlight artwork uses AniList banners for the exact season entry, prioritizing titles with landscape banners. A poster is contained rather than stretched when no banner is available. Hover or keyboard-focus a smaller anime poster card to show an expanded preview with artwork, synopsis, genres, status, episode count, and title. The large spotlight keeps its normal size.
 - Search: type a title in the top search bar and press Enter.
 - Open a title: posters open details without playing, including posters in viewing history. Sora automatically matches the streaming edition using English/Japanese titles and aliases. Use Connection details → Reconnect if the source is unavailable.
 - Episodes: click an episode to autoplay immediately. Filter episode numbers, use Start watching/Continue watching, or jump to another episode inside the player.

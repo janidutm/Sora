@@ -1,0 +1,20 @@
+'use strict';
+let posterPreviewTimer,posterPreviewAnchor;
+function hidePosterPreview(){clearTimeout(posterPreviewTimer);document.getElementById('poster-preview')?.remove();posterPreviewAnchor?.removeAttribute('aria-describedby');posterPreviewAnchor=null;}
+function showPosterPreview(card){
+  const id=card.dataset.open||card.dataset.resume,media=findMedia(id);if(!media||!card.isConnected||playerReq)return;
+  hidePosterPreview();posterPreviewAnchor=card;const panel=document.createElement('section');panel.id='poster-preview';panel.className='poster-preview';panel.setAttribute('role','region');panel.setAttribute('aria-label',`${title(media)} preview`);
+  panel.innerHTML=`${media.bannerImage?`<div class="preview-banner"><img src="${esc(media.bannerImage)}" alt=""></div>`:''}<div class="preview-body"><img class="preview-poster" src="${esc(media.coverImage?.extraLarge||art(media))}" alt=""><div><div class="eyebrow">${esc(media.format||'ANIME')} · ${esc(media.seasonYear||'')}</div><h2>${esc(title(media))}</h2><div class="preview-meta">★ ${media.averageScore?(media.averageScore/10).toFixed(1):'—'} · ${esc(media.episodes?media.episodes+' episodes':'Ongoing')}</div><span class="preview-status">${esc(media.status?.replaceAll('_',' ')||'')}</span></div></div><div class="preview-details"><div class="tags">${(media.genres||[]).slice(0,4).map(g=>`<span class="tag">${esc(g)}</span>`).join('')}</div><p>${esc(plain(media.description).slice(0,540)||'Open this anime to explore its story and episodes.')}</p><div class="preview-actions"><button class="button primary small" data-open="${media.id}">Explore episodes ↗</button><button class="button small" data-save="${media.id}">${saved(media.id)?'✓ Saved':'+ Watchlist'}</button></div></div>`;
+  document.body.append(panel);card.setAttribute('aria-describedby',panel.id);panel.querySelectorAll('img').forEach(img=>{if(img.complete)img.classList.add('image-ready');else img.addEventListener('load',()=>img.classList.add('image-ready'),{once:true});});
+  const r=card.getBoundingClientRect(),p={width:panel.offsetWidth,height:panel.offsetHeight};const leftEdge=Math.max(12,Math.min((document.querySelector('.sidebar')?.getBoundingClientRect().right||0)+12,innerWidth-p.width-12));panel.style.left=Math.max(leftEdge,Math.min(innerWidth-p.width-12,r.left+(r.width-p.width)/2))+'px';panel.style.top=Math.max(100,Math.min(innerHeight-p.height-12,r.top-12))+'px';
+  panel.addEventListener('pointerenter',()=>clearTimeout(posterPreviewTimer));panel.addEventListener('pointerleave',()=>{posterPreviewTimer=setTimeout(hidePosterPreview,160);});
+}
+document.addEventListener('pointerover',e=>{const card=e.target.closest('.card[data-open],.card[data-resume]');if(!card||card.contains(e.relatedTarget)||e.pointerType==='touch')return;clearTimeout(posterPreviewTimer);posterPreviewTimer=setTimeout(()=>showPosterPreview(card),240);});
+document.addEventListener('pointerout',e=>{const card=e.target.closest('.card[data-open],.card[data-resume]');if(!card||card.contains(e.relatedTarget)||document.getElementById('poster-preview')?.contains(e.relatedTarget))return;clearTimeout(posterPreviewTimer);posterPreviewTimer=setTimeout(hidePosterPreview,160);});
+document.addEventListener('focusin',e=>{const card=e.target.closest('.card[data-open],.card[data-resume]');if(card){clearTimeout(posterPreviewTimer);posterPreviewTimer=setTimeout(()=>showPosterPreview(card),100);}});
+document.addEventListener('focusout',e=>{if(document.getElementById('poster-preview')?.contains(e.relatedTarget)||posterPreviewAnchor?.contains(e.relatedTarget))return;posterPreviewTimer=setTimeout(hidePosterPreview,160);});
+document.addEventListener('click',e=>{if(e.target.closest('[data-open],[data-resume],[data-nav]'))hidePosterPreview();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hidePosterPreview();});window.addEventListener('scroll',hidePosterPreview,{passive:true});window.addEventListener('resize',hidePosterPreview);
+new MutationObserver(()=>{if(posterPreviewAnchor&&!posterPreviewAnchor.isConnected)hidePosterPreview();}).observe(document.getElementById('content'),{childList:true,subtree:true});
+
+

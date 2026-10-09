@@ -1,0 +1,8 @@
+{
+  "largeCarouselDoesNotExpand": "passed",
+  "posterExpandedDetailsAndBounds": "passed",
+  "escapeDismisses": "passed",
+  "rightEdgeBounds": "passed",
+  "previewClickOpensDetailsOnly": "passed",
+  "ok": true
+}
