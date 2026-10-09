@@ -12,12 +12,15 @@ app.whenReady().then(async()=>{try{
   const eps=await main.bridge('episodes','cowboy-bebop-1281');assert(eps.includes('\t26'));report.episodeListing='passed';
   await js(`openDetail(${JSON.stringify(catalogue.find(m=>m.id===1))})`);await until(()=>js('episodes.length > 0 && provider?.id === "cowboy-bebop-1281"'));report.metadataMapping='passed';
   // Save/restore library through the isolated renderer IPC path.
-  await js('toggleSave(current)');await wait(800);assert(await js('saved(1)'));report.watchlist='passed';
+  await js('saved(current.id) || toggleSave(current)');await wait(800);assert(await js('saved(1)'));report.watchlist='passed';
+  await until(()=>js('related.length>0'));report.relations='passed';assert(await js('document.querySelectorAll("[data-download-episode]").length===26'));report.individualEpisodeButtons='passed';
+  const cold=Date.now();await js('call("episodes",provider.id)');report.cachedEpisodeLookupMs=Date.now()-cold;
   await js('playEpisode("1")');const playback=await until(()=>js('document.querySelector("#video")?.currentTime > 2'),85000).catch(()=>false);report.embeddedPlayback=playback?'passed: media time advanced beyond 2 seconds':await js('document.querySelector("#player-status")?.textContent');
+  assert(await js('document.querySelector("#player-quality").options.length>1'));report.qualityMenu='passed';await js('(()=>{document.querySelector("#speed").value="1.5";document.querySelector("#speed").dispatchEvent(new Event("change",{bubbles:true}));return true})()');assert.equal(await js('document.querySelector("#video").playbackRate'),1.5);report.speedControl='passed';await until(()=>js('document.querySelector("#video").textTracks[0]?.cues?.length>0'),20000);report.subtitleCues='passed';
   await js('closePlayer()');
   const request={id:'cowboy-bebop-1281',title:'Sora smoke test',episodes:['1'],mode:'sub',quality:'best'};
   const queued=await js(`window.sora.enqueue(${JSON.stringify(request)})`);assert(queued.ok);
-  const job=await until(()=>{const job=main.getQueue()[0];if(job?.status==='error')throw Error(job.error);return job?.status==='downloading'&&job.progress>0?job:null;},85000);report.downloadTransfer=`passed: yt-dlp reported ${job.progress}%`;
-  const cancelled=await js(`window.sora.cancel(${JSON.stringify(job.key)})`);assert(cancelled.ok);await until(()=>main.getQueue()[0].status==='cancelled');report.downloadCancel='passed';
+  const job=await until(()=>{const job=main.getQueue().find(j=>['queued','resolving','downloading','error'].includes(j.status));if(job?.status==='error')throw Error(job.error);return job?.status==='downloading'&&job.progress>0?job:null;},85000);report.downloadTransfer=`passed: yt-dlp reported ${job.progress}%`;
+  const cancelled=await js(`window.sora.cancel(${JSON.stringify(job.key)})`);assert(cancelled.ok);await until(()=>main.getQueue().find(j=>j.key===job.key).status==='cancelled');report.downloadCancel='passed';
   report.ok=true;
 }catch(e){report.ok=false;report.error=e.stack;}finally{clearTimeout(watchdog);fs.writeFileSync(path.join(__dirname,'../docs/live-verification.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));app.quit();setTimeout(()=>app.exit(report.ok?0:1),1500);}});

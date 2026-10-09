@@ -1,5 +1,6 @@
 const {contextBridge,ipcRenderer}=require('electron');
 contextBridge.exposeInMainWorld('sora',{
+  detail: id=>ipcRenderer.invoke('detail',id),
   catalogue: q=>ipcRenderer.invoke('catalogue',q),
   sources: q=>ipcRenderer.invoke('sources',q),
   episodes: id=>ipcRenderer.invoke('episodes',id),

@@ -4,8 +4,14 @@
   "episodeListing": "passed",
   "metadataMapping": "passed",
   "watchlist": "passed",
+  "relations": "passed",
+  "individualEpisodeButtons": "passed",
+  "cachedEpisodeLookupMs": 1,
   "embeddedPlayback": "passed: media time advanced beyond 2 seconds",
-  "downloadTransfer": "passed: yt-dlp reported 0.1%",
+  "qualityMenu": "passed",
+  "speedControl": "passed",
+  "subtitleCues": "passed",
+  "downloadTransfer": "passed: yt-dlp reported 0.7%",
   "downloadCancel": "passed",
   "ok": true
 }
