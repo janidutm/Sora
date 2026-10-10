@@ -46,7 +46,7 @@ npm.cmd test
 npm.cmd start
 ```
 
-Dependencies are pinned in package-lock.json. The current dependencies and downloaded tools are already installed for this preview. The repository is local; nothing has been published.
+Dependencies are pinned in package-lock.json. For a fresh clone, run Setup.ps1 first; see README.md for prerequisites and upstream attribution.
 
 The ani-cli bridge is tied to the pinned upstream function interfaces. Updating it requires running the resolver checks and playback tests again; there is no automatic upstream update that could silently change them.
 

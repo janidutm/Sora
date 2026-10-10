@@ -8,3 +8,8 @@ docs/*.log
 docs/resolve-test.txt
 
 backups/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
