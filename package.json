@@ -1,7 +1,7 @@
 {
   "name": "sora-anime-desktop",
-  "version": "1.1.1",
-  "description": "An artwork-first desktop companion for ani-cli",
+  "version": "1.2.0",
+  "description": "An anime desktop app for Windows and Linux, built using original ani-cli, with artwork, offline playback and library backups.",
   "main": "main.cjs",
   "private": true,
   "license": "GPL-3.0-or-later",

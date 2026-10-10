@@ -1,10 +1,10 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 1.1.1, local desktop release. Developed by **Belu**.
+Version 1.2.0, Windows and Linux source release. Developed by **Belu**.
 
 ## Open
 
-Double-click **Start Sora.cmd**. The desktop app opens with trending anime artwork from AniList.
+For installation on a new device, see [the installation guide](docs/INSTALL.md). On Windows, double-click **Start Sora.cmd**. On Linux, run `bash start-sora.sh` after setup. The desktop app opens with trending anime artwork from AniList.
 
 - Discover: spotlight recommendations slide every five seconds. Use arrows, dots, or Pause; hovering or focusing pauses the carousel. Trending, recent popular, and upcoming sections refresh daily, with cached results available while a refresh runs.
 - Spotlight artwork uses AniList banners for the exact season entry, prioritizing titles with landscape banners. A poster is contained rather than stretched when no banner is available. Hover or keyboard-focus a smaller anime poster card to show an expanded preview with artwork, synopsis, genres, status, episode count, and title. The large spotlight keeps its normal size.

@@ -1,0 +1,10 @@
+{
+  "downloadSavesSubtitles": "passed",
+  "playbackWithoutSourceOrInternet": "passed",
+  "offlineCaptionOverlay": "passed",
+  "localSeekingRanges": "passed",
+  "seekAndFullscreen": "passed",
+  "offlineResume": "passed",
+  "persistentManualSubtitles": "passed",
+  "ok": true
+}

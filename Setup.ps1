@@ -16,4 +16,6 @@ if (!(Test-Path -LiteralPath $downloader)) {
 }
 & npm.cmd ci
 if ($LASTEXITCODE -ne 0) { throw 'npm ci failed.' }
+& node node_modules/electron/install.js
+if ($LASTEXITCODE -ne 0) { throw 'Electron installation failed.' }
 Write-Host 'Sora dependencies are ready. Ensure Git Bash and FFmpeg are installed, then run npm.cmd start.'

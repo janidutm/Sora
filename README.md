@@ -1,6 +1,6 @@
 # Sora
 
-An artwork-first Windows anime desktop app, developed by **Belu**.
+Your next little escape. An artwork-first anime desktop app for **Windows and Linux**, developed by **Belu**.
 
 **Built using the original [pystardust/ani-cli](https://github.com/pystardust/ani-cli).** Sora provides a custom Electron interface and built-in player around ani-cli's search, episode listing, and stream resolution functions. Those functions come from the original, unmodified upstream script—not an independently written streaming engine. This is an independent project and is not an official ani-cli release.
 
@@ -14,7 +14,11 @@ An artwork-first Windows anime desktop app, developed by **Belu**.
 - Offline playback and saved or imported subtitles in the same player.
 - Watchlist, resume history, total watch time, and portable library backups.
 
-## Install on Windows
+## Install
+
+See the **[complete installation guide](docs/INSTALL.md)** for prerequisites, Windows and Linux steps, other devices, updates, backups, troubleshooting, and uninstalling. Sora runs from source; Android/iOS are not supported. macOS is experimental.
+
+### Windows
 
 Install **Node.js 24+**, **Git for Windows** (Git Bash), and **FFmpeg**. Make `ffmpeg` available on PATH, or set `SORA_FFMPEG_DIR` to its `bin` folder. If Git is installed outside its standard location, set `SORA_BASH` to `bash.exe`.
 
@@ -27,7 +31,18 @@ npm.cmd start
 
 Setup installs the locked npm dependencies, downloads the pinned original ani-cli script and its license, and installs a pinned Windows yt-dlp executable. It does not install FFmpeg or change the system PATH. Review `Setup.ps1` before running it. Optional external mpv playback requires your own mpv distribution at `tools/mpv/mpv.exe`; the built-in player works without it.
 
-After setup, you can also double-click **Start Sora.cmd**. See [the user guide](READ%20ME.md), [download controls](docs/release-1.1.md), and [offline playback](docs/offline-playback.md).
+### Linux
+
+Install Node.js 24+, npm, Git, Bash, curl, Python 3, FFmpeg, and Electron runtime libraries using the [Linux guide](docs/INSTALL.md#linux-ubuntu--debian), then:
+
+```bash
+git clone https://github.com/janidutm/Sora.git
+cd Sora
+bash setup.sh
+npm start
+```
+
+After Windows setup, you can also double-click **Start Sora.cmd**. See [the user guide](READ%20ME.md), [download controls](docs/release-1.1.md), and [offline playback](docs/offline-playback.md).
 
 Application data lives in `data/`; downloads default to `downloads/`. Both are excluded from Git. Library backups exclude video files. Back up your library and videos before uninstalling; `Uninstall.ps1 -WhatIf` previews removal.
 
@@ -46,4 +61,6 @@ npm.cmd test
 npm.cmd start
 ```
 
-Version 1.1.1 has 31 passing unit tests, plus local Electron integration checks for downloads, offline playback, subtitles, library controls, and watch time. Integration scripts under `tests/` use isolated fixture data and may require additional local fixtures. External sources can change; these checks do not guarantee every title or source will work.
+Version 1.2.0 has 34 passing tests on Windows and Ubuntu (WSL), plus local Electron integration checks for downloads, offline playback, subtitles, library controls, and watch time. Integration scripts under `tests/` use isolated fixture data and may require additional local fixtures. External sources can change; these checks do not guarantee every title or source will work.
+
+Linux runtime and test details are recorded in [Linux verification](docs/linux-verification.md).

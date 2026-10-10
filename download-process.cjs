@@ -1,6 +1,11 @@
 const {spawn}=require('node:child_process');
 function stopTree(child){
   if(!child?.pid||child.exitCode!==null||child.signalCode!==null)return Promise.resolve();
+  if(process.platform!=='win32'){
+    try{if(child.soraProcessGroup)process.kill(-child.pid,'SIGKILL');else child.kill('SIGKILL');}
+    catch(e){if(e.code!=='ESRCH')child.kill('SIGKILL');}
+    return Promise.resolve();
+  }
   return new Promise(resolve=>{
     const killer=spawn('taskkill',['/pid',String(child.pid),'/T','/F'],{windowsHide:true,stdio:'ignore'});
     killer.once('error',()=>{child.kill();resolve();});
