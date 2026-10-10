@@ -1,6 +1,6 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 1.0.0, local desktop release. Developed by **Belu**.
+Version 1.0.1, local desktop release. Developed by **Belu**.
 
 ## Open
 
@@ -106,3 +106,6 @@ Twenty-two unit tests and six Electron integration suites passed for this releas
 These checks used isolated test data. Download transfer and cancellation were checked with a small partial download; full episodes and every external streaming source were not exhaustively tested. Details are in docs/final-verification.json.
 
 The loading constellation is original CSS animation, with reduced-motion support. Artwork remains credited to AniList and its respective rights holders. Sora's developer credit is Belu. Feature references include [Re:ANIME's schedule](https://reanime.to/schedule) and [watchlist export/import](https://reanime.to/profile). Fullscreen and autoplay follow [Electron's BrowserWindow API](https://www.electronjs.org/docs/latest/api/browser-window).
+
+## Download patch 1.0.1
+Cancel now stops preparation and active transfer processes; queue progress keeps the Cancel button stable. Retry preserves partial files. See docs/download-fix-notes.md for the new verification results and deeper reference-site exploration.

@@ -1,0 +1,7 @@
+{
+  "queuedCancel": "passed",
+  "preparationCancelAndQueueAdvanceMs": 1916,
+  "repeatCancel": true,
+  "stableCancelButton": "passed",
+  "ok": true
+}

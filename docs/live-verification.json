@@ -15,7 +15,6 @@
   "subtitleCues": "passed",
   "playingFullscreen": "passed",
   "escapeKeepsPlayer": "passed",
-  "downloadTransfer": "passed: yt-dlp reported 0.7%",
-  "downloadCancel": "passed",
-  "ok": true
+  "ok": false,
+  "error": "Error: Timed out waiting for integration condition.\n    at until (C:\\Users\\JaniduTM\\Documents\\MADEWITHGPT\\Sora\\tests\\live-smoke.cjs:6:156)\n    at async C:\\Users\\JaniduTM\\Documents\\MADEWITHGPT\\Sora\\tests\\live-smoke.cjs:24:13"
 }

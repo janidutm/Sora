@@ -22,6 +22,6 @@ app.whenReady().then(async()=>{try{
   const request={id:'cowboy-bebop-1281',title:'Sora smoke test',episodes:['1'],mode:'sub',quality:'best'};
   const queued=await js(`window.sora.enqueue(${JSON.stringify(request)})`);assert(queued.ok);
   const job=await until(()=>{const job=main.getQueue().find(j=>['queued','resolving','downloading','error'].includes(j.status));if(job?.status==='error')throw Error(job.error);return job?.status==='downloading'&&job.progress>0?job:null;},85000);report.downloadTransfer=`passed: yt-dlp reported ${job.progress}%`;
-  const cancelled=await js(`window.sora.cancel(${JSON.stringify(job.key)})`);assert(cancelled.ok);await until(()=>main.getQueue().find(j=>j.key===job.key).status==='cancelled');report.downloadCancel='passed';
+  const downloadPid=job.child.pid;const cancelled=await js(`window.sora.cancel(${JSON.stringify(job.key)})`);assert(cancelled.ok);await until(()=>main.getQueue().find(j=>j.key===job.key).status==='cancelled'&&!job.child);assert.throws(()=>process.kill(downloadPid,0));const stoppedProgress=job.progress;await wait(1000);assert.equal(job.progress,stoppedProgress);report.downloadCancel='passed: downloader exited and progress stopped';
   report.ok=true;
 }catch(e){report.ok=false;report.error=e.stack;}finally{clearTimeout(watchdog);fs.writeFileSync(path.join(__dirname,'../docs/live-verification.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));app.quit();setTimeout(()=>app.exit(report.ok?0:1),1500);}});
