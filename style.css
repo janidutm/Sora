@@ -18,3 +18,5 @@ button,.button,.tag,.nav,.relation-card,.episode-tile,select{transition:backgrou
 .library-card-wrap{min-width:0}.library-card-wrap>.card{width:100%}.remove-watchlist{margin-top:8px;width:100%}.download-intro{flex-wrap:wrap}.collection-copy>div{display:flex;gap:8px;flex-wrap:wrap}
 
 .backup-stats{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:1100px){.backup-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+[hidden]{display:none!important}

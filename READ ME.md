@@ -1,6 +1,6 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 1.1.0, local desktop release. Developed by **Belu**.
+Version 1.1.1, local desktop release. Developed by **Belu**.
 
 ## Open
 
@@ -111,3 +111,7 @@ The loading constellation is original CSS animation, with reduced-motion support
 ## New in 1.1
 
 See [download and library controls](docs/release-1.1.md) for Pause/Resume, cancellation cleanup, download folder selection, total watch time, explicit watchlist removal, and their backup behavior. Tracking starts with this version. The current checks include 28 automated tests and Electron transfer, watch-time, and poster-preview checks.
+
+## Watch downloaded episodes
+
+Use Downloads → Watch offline to play saved videos in Sora Cinema. Available subtitles save with new downloads. Fetch subtitles repairs older downloads; Add subtitles permanently saves a local SRT/VTT alongside the episode. See [offline playback](docs/offline-playback.md) for details and the 31-test verification.

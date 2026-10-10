@@ -11,7 +11,7 @@ function removeJobFiles(defaultFolder,job){
  // Legacy downloads share a directory. Only remove this episode's known outputs.
  const base=job.file||require('./lib.cjs').safeFilename(`${job.title} Episode ${job.episode}`);
  for(const name of fs.readdirSync(root)){
-  if(!name.startsWith(base+'.')||!/^\.(?:f\d+\.)?(?:mp4|mkv|webm|mov|m4v|vtt|srt|ytdl)(?:\.(?:part(?:-Frag\d+)?|ytdl))?$/.test(name.slice(base.length)))continue;
+  if(!name.startsWith(base+'.')||!/^\.(?:f\d+\.|temp\.|sub-\d+\.|local\.)?(?:mp4|mkv|webm|mov|m4v|vtt|srt|ytdl)(?:\.(?:part(?:-Frag\d+)?|ytdl))?$/.test(name.slice(base.length)))continue;
   const file=path.resolve(root,name);if(path.dirname(file)===root&&!fs.lstatSync(file).isDirectory())fs.unlinkSync(file);
  }
 }
