@@ -17,9 +17,13 @@ contextBridge.exposeInMainWorld('sora',{
   play: req=>ipcRenderer.invoke('play',req),
   external: req=>ipcRenderer.invoke('external',req),
   enqueue: req=>ipcRenderer.invoke('enqueue',req),
+  retryDownload: id=>ipcRenderer.invoke('retryDownload',id),
+  pause: id=>ipcRenderer.invoke('pause',id),
+  resume: id=>ipcRenderer.invoke('resume',id),
+  chooseDownloadDirectory: ()=>ipcRenderer.invoke('chooseDownloadDirectory'),
   cancel: id=>ipcRenderer.invoke('cancel',id),
   state: ()=>ipcRenderer.invoke('state'),
   save: value=>ipcRenderer.invoke('save',value),
-  reveal: ()=>ipcRenderer.invoke('reveal'),
+  reveal: key=>ipcRenderer.invoke('reveal',key),
   onQueue: fn=>{ipcRenderer.on('queue',(_event,value)=>fn(value));}
 });

@@ -1,0 +1,15 @@
+process.env.SORA_TEST='1';
+const {app}=require('electron'),assert=require('node:assert/strict'),http=require('node:http'),fs=require('node:fs'),path=require('node:path');const main=require('../main.cjs');const report={};let server;
+const wait=ms=>new Promise(r=>setTimeout(r,ms));async function until(fn,ms=20000){const start=Date.now();while(Date.now()-start<ms){if(await fn())return;await wait(100);}throw Error('Watch test timed out');}
+app.whenReady().then(async()=>{try{
+ await until(()=>main.getWindow());const win=main.getWindow();await until(()=>!win.webContents.isLoading());const js=s=>win.webContents.executeJavaScript(`(async()=>(${s}))()`);await until(()=>js('typeof playEpisode==="function"'));
+ server=http.createServer((req,res)=>{const name=path.basename(req.url);if(!/^(master|low|high)\d*\.(m3u8|ts)$/.test(name)){res.writeHead(404);return res.end();}res.writeHead(200,{'Access-Control-Allow-Origin':'*','Content-Type':name.endsWith('.m3u8')?'application/vnd.apple.mpegurl':'video/mp2t'});fs.createReadStream(path.resolve(__dirname,'../work/quality-fixture',name)).pipe(res);});await new Promise(r=>server.listen(0,'127.0.0.1',r));
+ const old=await js('call("state")');
+ await js(`(()=>{const originalCall=call;call=async(method,...args)=>method==='play'?{url:'http://127.0.0.1:${server.address().port}/master.m3u8',tracks:[]}:originalCall(method,...args);current={id:1,title:{english:'Watch time fixture'}};provider={id:'fixture'};episodes=[{number:'1'}];library.statistics={watchSecondsByDevice:{}};return playEpisode('1');})()`);
+ await until(()=>js('document.querySelector("#video").currentTime>1'));
+ await wait(3500);const total=await js('Object.values(library.statistics.watchSecondsByDevice).reduce((a,b)=>a+b,0)');assert(total>=2&&total<8);report.playingAccruesSeconds=total;
+ await js('document.querySelector("#video").pause()');const paused=await js('JSON.stringify(library.statistics)');await wait(2200);assert.equal(await js('JSON.stringify(library.statistics)'),paused);report.pauseExcluded='passed';
+ await js('(()=>{document.querySelector("#video").currentTime=18;return true;})()');await wait(1100);assert.equal(await js('JSON.stringify(library.statistics)'),paused);report.seekExcluded='passed';
+ await js('closePlayer()');await js('call("exportBackup",library)');const backup=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../work/smoke-data/test-backup.json')));assert(Object.values(backup.library.statistics.watchSecondsByDevice).reduce((a,b)=>a+b,0)>=total);report.measuredTimeBackedUp='passed';
+ await js(`call('save',${JSON.stringify({watchlist:old.watchlist,history:old.history,statuses:old.statuses,preferences:old.preferences,statistics:old.statistics,watchlistAdded:old.watchlistAdded,watchlistRemoved:old.watchlistRemoved})})`);report.ok=true;
+ }catch(e){report.ok=false;report.error=e.stack;}finally{server?.closeAllConnections();server?.close();fs.writeFileSync(path.resolve(__dirname,'../docs/watch-time-verification.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));app.quit();}});setTimeout(()=>app.exit(1),40000).unref();

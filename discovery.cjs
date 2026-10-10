@@ -11,6 +11,6 @@ function makeDiscovery({data,fields,onUpdate=()=>{},fetcher=fetch,now=()=>new Da
     try{const legacy=JSON.parse(fs.readFileSync(path.join(data,'home.json'),'utf8'));if(legacy.length){old={day:'',updatedAt:fs.statSync(path.join(data,'home.json')).mtime.toISOString(),trending:legacy,popular:[],upcoming:[]};void refresh().catch(()=>{});return {...old,stale:true};}}catch{}return refresh();}
   return {get,refresh};
 }
-function safeDownloadedFile(downloads,job){if(job?.status!=='complete')return null;const root=path.resolve(downloads);const allowed=/\.(mp4|mkv|webm|mov|m4v)$/i;const names=job.filePath?[job.filePath]:fs.readdirSync(root).filter(n=>n.startsWith((job.file||'')+'.')&&allowed.test(n));for(const name of names){const target=path.resolve(root,name);if(path.dirname(target)!==root||!allowed.test(target))continue;try{if(fs.statSync(target).isFile())return target;}catch{}}return null;}
+function safeDownloadedFile(downloads,job){if(job?.status!=='complete')return null;const root=path.resolve(downloads);if(!fs.existsSync(root))return null;const allowed=/\.(mp4|mkv|webm|mov|m4v)$/i;const names=job.filePath?[job.filePath]:fs.readdirSync(root).filter(n=>n.startsWith((job.file||'')+'.')&&allowed.test(n));for(const name of names){const target=path.resolve(root,name);if(path.dirname(target)!==root||!allowed.test(target))continue;try{if(fs.statSync(target).isFile())return target;}catch{}}return null;}
 module.exports={localDay,isDailyFresh,makeDiscovery,safeDownloadedFile};
 

@@ -1,0 +1,9 @@
+{
+  "pausePreservesPartial": "passed",
+  "resumeUsesRange": "passed",
+  "cancelDeletesFilesKeepsThumbnail": "passed",
+  "chooseFolderPinsExistingJobs": "passed",
+  "explicitWatchlistRemoval": "passed",
+  "backupIncludesStatisticsRemovalAndFolder": "passed",
+  "ok": true
+}

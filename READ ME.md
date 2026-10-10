@@ -1,6 +1,6 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 1.0.1, local desktop release. Developed by **Belu**.
+Version 1.1.0, local desktop release. Developed by **Belu**.
 
 ## Open
 
@@ -13,7 +13,7 @@ Double-click **Start Sora.cmd**. The desktop app opens with trending anime artwo
 - Episodes: click an episode to autoplay immediately. Filter episode numbers, use Start watching/Continue watching, or jump to another episode inside the player.
 - Sora Cinema: adaptive quality plus available source resolutions, playback speed, volume/mute, seeking, fullscreen, picture in picture, previous/next, and optional auto-next. Expand Playback & subtitle settings to choose a track, size, colour, background, position, timing offset, or a local SRT/VTT file. Space pauses, arrows seek 10 seconds, F toggles fullscreen, M mutes. Retry and mpv fallback remain available.
 - Playback quality is directly beside the fullscreen controls. Best pins the highest available resolution (and bitrate at that resolution); Auto adapts to the connection. Pick an available resolution to switch during playback without restarting. The adjacent label shows the decoded video height. Your player quality choice is saved. A source offering only one resolution cannot provide additional resolutions.
-- Downloads: use the download button beneath any episode, or click Download episodes, pick a range of up to 50 episodes, and Add to queue. Each episode downloads sequentially. Collection cards show cached artwork, clickable anime titles, progress, cancellation and retry. Saved offline means the completed video still exists in the downloads folder. Open folder accesses your saved videos.
+- Downloads: use the download button beneath any episode, or click Download episodes, pick a range of up to 50 episodes, and Add to queue. Each episode downloads sequentially. Collection cards show cached artwork, clickable anime titles, progress, pause/resume, cancellation and retry. Saved offline means the completed video still exists in the downloads folder. Open folder accesses your saved videos.
 - Connection: the top bar shows online/offline status, checked periodically. Click it to recheck. Saved title details remain accessible offline; new searches and streams require a connection.
 - My watchlist: save titles and track Planned, Watching, Completed, On-hold, and Dropped. Filter your library by status.
 - Navigation: use the top-left arrows or Alt+Left/Right to return to a previous page with its search, episode page, and scroll position.
@@ -21,9 +21,9 @@ Double-click **Start Sora.cmd**. The desktop app opens with trending anime artwo
 - Surprise me: open a random released title from Discover.
 - Continue watching: saves episode and embedded-player position locally. External mpv playback positions are not tracked.
 
-Downloads are stored in Sora/downloads. Video files and English VTT subtitles share the same filename when available. If the requested quality is unavailable, ani-cli may choose the best available variant; the player offers Auto plus the resolutions actually advertised by the stream.
+Downloads default to Sora/downloads, with a separate subfolder per new episode. Use Downloads → Change folder to choose a new destination. Existing jobs keep their original locations. Video files and English VTT subtitles share the same filename when available. If the requested quality is unavailable, ani-cli may choose the best available variant; the player offers Auto plus the resolutions actually advertised by the stream.
 
-Closing the app stops active work. Interrupted downloads are marked for retry on the next launch; yt-dlp can reuse partial files. Partially downloaded files remain until resumed or removed manually. Downloads do not run as a background service.
+Closing the app stops active work. Interrupted downloads are marked for retry on the next launch; yt-dlp can reuse partial files. Pause keeps partial files for Resume; Cancel deletes the episode's files and keeps its thumbnail card. Paused jobs remain paused after reopening. Downloads do not run as a background service.
 
 ## How it is built
 
@@ -107,5 +107,7 @@ These checks used isolated test data. Download transfer and cancellation were ch
 
 The loading constellation is original CSS animation, with reduced-motion support. Artwork remains credited to AniList and its respective rights holders. Sora's developer credit is Belu. Feature references include [Re:ANIME's schedule](https://reanime.to/schedule) and [watchlist export/import](https://reanime.to/profile). Fullscreen and autoplay follow [Electron's BrowserWindow API](https://www.electronjs.org/docs/latest/api/browser-window).
 
-## Download patch 1.0.1
-Cancel now stops preparation and active transfer processes; queue progress keeps the Cancel button stable. Retry preserves partial files. See docs/download-fix-notes.md for the new verification results and deeper reference-site exploration.
+
+## New in 1.1
+
+See [download and library controls](docs/release-1.1.md) for Pause/Resume, cancellation cleanup, download folder selection, total watch time, explicit watchlist removal, and their backup behavior. Tracking starts with this version. The current checks include 28 automated tests and Electron transfer, watch-time, and poster-preview checks.
