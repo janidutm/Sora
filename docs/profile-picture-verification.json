@@ -1,0 +1,11 @@
+{
+  "resizeAndPreview": true,
+  "savedPicture": true,
+  "backupEmbedsPicture": true,
+  "reloadPersistsPicture": true,
+  "cancelPreservesPicture": true,
+  "removeReturnsInitial": true,
+  "restorePicture": true,
+  "creditLinksUseGithub": true,
+  "ok": true
+}

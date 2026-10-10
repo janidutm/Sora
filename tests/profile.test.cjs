@@ -1,6 +1,18 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const {username,initial}=require('../profile.js');
 const {createBackup,parseBackup,restoreLibrary}=require('../backup.cjs');
+const png='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aP1sAAAAASUVORK5CYII=';
+test('profile pictures reject remote URLs, SVG, invalid data and oversized backups',()=>{
+ const {picture}=require('../profile.js');assert.equal(picture(png),png);
+ for(const value of ['https://example.com/avatar.png','data:image/svg+xml;base64,PHN2Zz4=',png+'<script>',png+'A'.repeat(400000),null])assert.equal(picture(value),'');
+});
+test('portable backups preserve pictures and explicit removal without requiring source files',()=>{
+ const library=picture=>({watchlist:[],history:[],preferences:{username:'Janidu',profilePicture:picture}});
+ const restored=parseBackup(JSON.parse(JSON.stringify(createBackup(library(png)))));assert.equal(restored.preferences.profilePicture,png);
+ assert.equal(restoreLibrary(library(png),library(''),'merge').preferences.profilePicture,'');
+ assert.equal(restoreLibrary(library(png),library(undefined),'merge').preferences.profilePicture,png);
+ assert.equal(restoreLibrary(library(''),restored,'replace').preferences.profilePicture,png);
+});
 test('usernames support Unicode, trim whitespace, and reject empty or unsafe values',()=>{
  assert.equal(username('  Janidu   TM  '),'Janidu TM');assert.equal(initial('janidutm'),'J');
  assert.equal(username('べる'),'べる');assert.equal(initial('べる'),'べ');assert.equal(initial(null),'?');

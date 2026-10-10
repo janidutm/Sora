@@ -1,6 +1,6 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 1.2.1, Windows and Linux source release. Developed by **Belu**.
+Version 1.2.2, Windows and Linux source release. Developed by **[Belu](https://github.com/janidutm)**.
 
 ## Open
 
@@ -119,3 +119,7 @@ Use Downloads → Watch offline to play saved videos in Sora Cinema. Available s
 ## Your profile
 
 On first launch, enter a username of up to 32 characters. Click your profile initial in the top bar to edit it later. The name stays local and is included in library backups. Developer credit remains Belu.
+
+### Profile pictures
+
+Click your profile in the top bar, choose a PNG, JPG or WebP image (up to 10 MB), then **Save profile**. Sora center-crops and resizes it to a 256×256 PNG; the preview shows the crop before saving. You can remove the picture to return to your initial. Pictures stay local and are embedded in library backups, so restoring on another computer needs no original image file. No remote image URL or upload is required. Developer credits open [Belu’s GitHub](https://github.com/janidutm).

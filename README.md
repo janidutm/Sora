@@ -1,6 +1,6 @@
 # Sora
 
-Your next little escape. An artwork-first anime desktop app for **Windows and Linux**, developed by **Belu**.
+Your next little escape. An artwork-first anime desktop app for **Windows and Linux**, developed by **[Belu](https://github.com/janidutm)**.
 
 **Built using the original [pystardust/ani-cli](https://github.com/pystardust/ani-cli).** Sora provides a custom Electron interface and built-in player around ani-cli's search, episode listing, and stream resolution functions. Those functions come from the original, unmodified upstream script—not an independently written streaming engine. This is an independent project and is not an official ani-cli release.
 
@@ -129,6 +129,10 @@ npm.cmd test
 npm.cmd start
 ```
 
-Version 1.2.1 has 36 passing tests on Windows, including username validation and backup compatibility. Its Electron profile checks cover the first-launch prompt, editing, validation, safe display, and persistence after reload. The 1.2.0 Linux baseline passed 34 tests and offline-player integration checks in Ubuntu (WSL). Integration scripts under `tests/` use isolated fixture data and may require additional local fixtures. External sources can change; these checks do not guarantee every title or source will work.
+Version 1.2.2 has 38 passing tests on Windows, including username/picture validation and backup compatibility. Its Electron profile checks cover the first-launch prompt, editing, validation, safe display, and persistence after reload. The 1.2.0 Linux baseline passed 34 tests and offline-player integration checks in Ubuntu (WSL). Integration scripts under `tests/` use isolated fixture data and may require additional local fixtures. External sources can change; these checks do not guarantee every title or source will work.
 
 Linux runtime and test details are recorded in [Linux verification](docs/linux-verification.md).
+
+### Profile pictures
+
+Click your profile in the top bar, choose a PNG, JPG or WebP image (up to 10 MB), then **Save profile**. Sora center-crops and resizes it to a 256×256 PNG; the preview shows the crop before saving. You can remove the picture to return to your initial. Pictures stay local and are embedded in library backups, so restoring on another computer needs no original image file. No remote image URL or upload is required. Developer credits open [Belu’s GitHub](https://github.com/janidutm).

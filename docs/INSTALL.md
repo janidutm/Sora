@@ -1,6 +1,6 @@
 # Install Sora
 
-Sora is a desktop application developed by **Belu**, built using the original [pystardust/ani-cli](https://github.com/pystardust/ani-cli). It currently runs from source; there are no official Sora installers, APKs, or mobile apps.
+Sora is a desktop application developed by **[Belu](https://github.com/janidutm)**, built using the original [pystardust/ani-cli](https://github.com/pystardust/ani-cli). It currently runs from source; there are no official Sora installers, APKs, or mobile apps.
 
 ## Devices
 
@@ -108,3 +108,7 @@ On Windows, preview uninstall with `Uninstall.ps1 -WhatIf` and read its help bef
 ## Verification
 
 Run `npm test` after setup. Tests cover platform tool resolution, cancellation, local media seeking, subtitle conversion, backups, and library state. Full GUI and external-source playback coverage varies by operating system; see [Linux verification](linux-verification.md) for the recorded Linux checks.
+
+### Profile pictures
+
+Click your profile in the top bar, choose a PNG, JPG or WebP image (up to 10 MB), then **Save profile**. Sora center-crops and resizes it to a 256×256 PNG; the preview shows the crop before saving. You can remove the picture to return to your initial. Pictures stay local and are embedded in library backups, so restoring on another computer needs no original image file. No remote image URL or upload is required. Developer credits open [Belu’s GitHub](https://github.com/janidutm).

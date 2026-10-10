@@ -26,6 +26,7 @@ contextBridge.exposeInMainWorld('sora',{
   chooseDownloadDirectory: ()=>ipcRenderer.invoke('chooseDownloadDirectory'),
   cancel: id=>ipcRenderer.invoke('cancel',id),
   state: ()=>ipcRenderer.invoke('state'),
+  openDeveloper: ()=>ipcRenderer.invoke('openDeveloper'),
   save: value=>ipcRenderer.invoke('save',value),
   reveal: key=>ipcRenderer.invoke('reveal',key),
   onQueue: fn=>{ipcRenderer.on('queue',(_event,value)=>fn(value));}
