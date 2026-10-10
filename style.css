@@ -20,3 +20,5 @@ button,.button,.tag,.nav,.relation-card,.episode-tile,select{transition:backgrou
 .backup-stats{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:1100px){.backup-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 [hidden]{display:none!important}
+
+#profile-button{flex-shrink:0;transition:transform .18s ease,box-shadow .18s ease}#profile-button:hover,#profile-button:focus-visible{transform:translateY(-2px);box-shadow:0 0 0 3px #8ac9b233}.profile-dialog label{display:block;margin:20px 0 9px;font-weight:600}.profile-dialog input{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text)}#profile-error{color:#ffac9b;min-height:1.3em}.profile-dialog .actions{justify-content:flex-end}

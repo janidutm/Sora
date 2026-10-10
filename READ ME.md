@@ -1,6 +1,6 @@
 # Sora — an artwork-first desktop companion for ani-cli
 
-Version 1.2.0, Windows and Linux source release. Developed by **Belu**.
+Version 1.2.1, Windows and Linux source release. Developed by **Belu**.
 
 ## Open
 
@@ -115,3 +115,7 @@ See [download and library controls](docs/release-1.1.md) for Pause/Resume, cance
 ## Watch downloaded episodes
 
 Use Downloads → Watch offline to play saved videos in Sora Cinema. Available subtitles save with new downloads. Fetch subtitles repairs older downloads; Add subtitles permanently saves a local SRT/VTT alongside the episode. See [offline playback](docs/offline-playback.md) for details and the 31-test verification.
+
+## Your profile
+
+On first launch, enter a username of up to 32 characters. Click your profile initial in the top bar to edit it later. The name stays local and is included in library backups. Developer credit remains Belu.

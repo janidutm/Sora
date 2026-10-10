@@ -74,6 +74,10 @@ For Fedora, the basic packages are `git curl bash python3 nodejs npm gtk3 nss me
 
 Install Node.js 24+, npm, Git, curl, Python 3, FFmpeg, and **GNU sed**. The system BSD sed may behave differently from the upstream bridge's expectations; put GNU sed's `gnubin` directory on PATH. Then clone the repository and run `bash setup.sh` and `npm start`. This route is provided for developers to try; macOS playback and downloads have not been verified.
 
+## Your username
+
+On first launch, enter a local username of up to 32 characters. Your profile button shows its initial; click the button to change your name anytime. Choosing Later keeps a neutral question mark and prompts again next launch. The name stays on your computer and is included in library backups. It is a display preference, not an online account or password. Developer credits continue to name Belu.
+
 ## Troubleshooting
 
 - **Missing Bash / FFmpeg / yt-dlp:** verify the dependency is installed and visible to the terminal that launches Sora. You can override tool paths using the variables below.
